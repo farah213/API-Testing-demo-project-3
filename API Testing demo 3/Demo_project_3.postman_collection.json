@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "a4277bc2-6a9c-489b-9b91-a144c3536dc3",
+		"name": "Demo_project_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21766656"
+	},
+	"item": [
+		{
+			"name": "Post user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JsonData=pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check valid id\", function () {\r",
+							"    pm.expect(JsonData.id).to.eql(6);\r",
+							"});\r",
+							"pm.test(\"Check username\", function () {\r",
+							"    pm.expect(JsonData.userName).to.eql(\"Tasnim\");\r",
+							"});\r",
+							"pm.test(\"Check username with negative value\", function () {\r",
+							"    pm.expect(JsonData.userName).to.eql(\"tasnim\");\r",
+							"});\r",
+							"pm.test(\"Check password\", function () {\r",
+							"    pm.expect(JsonData.password).to.eql(\"123\");\r",
+							"});\r",
+							"pm.test(\"Check password with negative value\", function(){\r",
+							"    pm.expect(JsonData.password).to.eql(\"345\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": " */*",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": " application/json; v=1.0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 6,\r\n  \"userName\": \"Tasnim\",\r\n  \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Baseurl}}/api/v1/Users",
+					"host": [
+						"{{Baseurl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JsonData=pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check userName\", function () {\r",
+							"    pm.expect(JsonData[0].userName).to.eql(\"User 1\");\r",
+							"});\r",
+							"pm.test(\"Check username\", function () {\r",
+							"    pm.expect(JsonData[3].userName).to.eql(\"User 5\");\r",
+							"});\r",
+							"pm.test(\"Check password\", function () {\r",
+							"    pm.expect(JsonData[3].password).to.eql(\"Password4\");\r",
+							"});\r",
+							"pm.test(\"Check id\", function () {\r",
+							"    pm.expect(JsonData[5].id).to.eql(6);\r",
+							"});\r",
+							"pm.test(\"Check username\", function () {\r",
+							"    pm.expect(JsonData[5].userName).to.eql(\"User 6\");\r",
+							"});\r",
+							"pm.test(\"Check password\", function () {\r",
+							"    pm.expect(JsonData[6].password).to.eql(\"Password6\");\r",
+							"});\r",
+							"pm.test(\"Check id\", function () {\r",
+							"    pm.expect(JsonData[4].id).to.eql(5);\r",
+							"});\r",
+							"pm.test(\"check password\", function () {\r",
+							"    pm.expect(JsonData[8].password).to.eql(\"Password4\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": " text/plain; v=1.0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Baseurl}}/api/v1/Users",
+					"host": [
+						"{{Baseurl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JsonData=pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": " */*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Baseurl}}/api/v1/Users/3",
+					"host": [
+						"{{Baseurl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JsonData=pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": " */*",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": " application/json; v=1.0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"userName\": \"Tasnim\",\r\n  \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Baseurl}}/api/v1/Users/1",
+					"host": [
+						"{{Baseurl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": " */*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Baseurl}}/api/v1/Users/3",
+					"host": [
+						"{{Baseurl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
